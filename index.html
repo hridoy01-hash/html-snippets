@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awards Grid</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f7f7f7;
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            width: 60%;
+            max-width: 800px;
+            background-color: #FBF6EF;
+        }
+
+        .award-item {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #57595C;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .award-item:nth-child(2),
+        .award-item:nth-child(4),
+        .award-item:nth-child(6) {
+            border-left: 1px solid #57595C;
+        }
+
+        .award-item:nth-child(5),
+        .award-item:nth-child(6) {
+            border-bottom: none;
+        }
+
+        .year {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            display: block;
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 600px) {
+            .awards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .award-item {
+                border-left: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="awards-grid">
+        <div class="award-item">
+            <span class="year">2015 - 2016</span>
+            <span class="title">Best design award</span>
+        </div>
+        <div class="award-item">
+            <span class="year">2017 - 2018</span>
+            <span class="title">Dribbble winner</span>
+        </div>
+        <div class="award-item">
+            <span class="year">2018 - 2019</span>
+            <span class="title">Design of the year</span>
+        </div>
+        <div class="award-item">
+            <span class="year">2019 - 2020</span>
+            <span class="title">Graphic design</span>
+        </div>
+        <div class="award-item">
+            <span class="year">2020 - 2021</span>
+            <span class="title">Awwwards winner</span>
+        </div>
+        <div class="award-item">
+            <span class="year">2022 - 2023</span>
+            <span class="title">Best jury awards</span>
+        </div>
+    </div>
+</body>
+
+</html>

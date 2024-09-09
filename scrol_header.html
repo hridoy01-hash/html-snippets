@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Header</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        #header {
+            width: 100%;
+            background-color: rgb(5, 5, 5);
+            transition: top 0.5s ease, opacity 0.5s ease;
+        }
+
+        .with_out_sticky {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            opacity: 1;
+            padding: 20px 10px;
+            background-color: rgb(0, 0, 0);
+            color: #fff;
+        }
+
+        .sticky-header {
+            position: fixed;
+            width: 100%;
+            top: -100px;
+            opacity: 0;
+            animation: smoothAppear 0.7s forwards;
+            background-color: rgb(0, 0, 0);
+            color: #fff;
+            padding: 20px 10px;
+        }
+
+        @keyframes smoothAppear {
+            to {
+                top: 0;
+                opacity: 1;
+            }
+        }
+
+        .content {
+            height: 2000px;
+            padding-top: 100px;
+        }
+
+        /* Back to Top Button Styling */
+        #backToTopBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: #0057FC;
+            color: white;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            font-size: 18px;
+            opacity: 0;
+            transform: scale(0.6);
+            transition: opacity 0.4s ease, transform 0.4s ease, background-color 0.4s ease;
+        }
+
+        /* When the button is visible */
+        #backToTopBtn.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Back to Top Button -->
+    <button id="backToTopBtn" title="Go to top">↑</button>
+    <header id="header" class="with_out_sticky">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, ullam at! Recusandae dolores similique ab
+    </header>
+    <div class="content">
+        <!-- Your page content here -->
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt est nihil sequi quod minima debitis obcaecati
+        voluptates, sit delectus! Quaerat explicabo velit deleniti assumenda debitis magni iure soluta officia ex
+        provident exercitationem architecto animi, illum nobis quos. Provident deserunt, fugiat officiis minima mollitia
+        ad, nisi eum distinctio nam iusto, impedit quia laudantium nihil voluptates iure commodi sunt veritatis aut
+        labore odit voluptate possimus eveniet qui libero! Dolor nam iusto cupiditate. Odio maxime quisquam dignissimos
+        dolorem consequuntur iusto minima nobis, commodi hic, repellat earum, quo mollitia quae? Voluptatum voluptatem
+        sed aliquam. Eum, accusamus non deserunt libero numquam exercitationem! Eos reprehenderit neque asperiores
+        voluptatem est, soluta itaque dolorem, mollitia blanditiis, ab magni. Ratione iure beatae ipsa, sapiente aut
+        quidem maxime nihil odit eum nam. Vero illum ab accusantium corporis culpa suscipit nemo, vel facere nulla saepe
+        ullam molestiae? Quod rem aliquid ab debitis odio beatae fugit. Praesentium quos magnam voluptate illum incidunt
+        voluptas veritatis id quam earum, quibusdam vero consequatur, libero placeat nam nesciunt dolor facere quod
+        dolore dolores, odit rerum fugiat dolorem animi? Commodi dicta eos nihil harum officia itaque, velit placeat
+        delectus consequatur omnis hic quia earum, recusandae quibusdam sed cumque, molestias facere! Delectus fugiat
+        fuga excepturi iste perferendis quae illum laudantium rem vitae placeat et explicabo, porro iure repellat,
+        corporis repellendus vel minima asperiores nam vero exercitationem nisi blanditiis! Corrupti nobis, earum
+        voluptatibus, beatae accusantium provident quae veritatis eveniet deserunt qui fugiat rerum consequatur
+        obcaecati excepturi facilis, reprehenderit magnam possimus quo voluptatum. Modi veniam est voluptates iste saepe
+        incidunt ratione possimus magni accusamus. Iusto veniam aperiam, neque perferendis optio ut quibusdam explicabo
+        eius eligendi blanditiis ratione possimus nam. Ut adipisci id deleniti, dolor eligendi veritatis exercitationem
+        veniam facilis, ratione quibusdam dignissimos est nobis minus temporibus iure quo maxime itaque dolore, nam
+        dolores laboriosam! Veritatis, error saepe, dolore animi qui earum similique itaque soluta voluptatum nemo
+        ducimus a? Aperiam est dolor deserunt dolore quos porro eum unde pariatur. Libero, recusandae? Error, in
+        aspernatur corporis aperiam consequatur vel possimus modi earum a vero nam. Perspiciatis aliquid commodi
+        quisquam aperiam culpa inventore aliquam doloremque corrupti, asperiores pariatur porro ipsa hic nulla veniam
+        dolores repudiandae qui harum similique illo, impedit voluptate? Voluptatem, ducimus voluptatibus nam eum veniam
+        impedit? Blanditiis molestiae est omnis sequi fuga repudiandae quaerat nobis sed. Iusto aliquid perspiciatis
+        reprehenderit blanditiis, voluptatibus dicta quia, quos mollitia, nemo expedita dolorum. Cumque dolorum nesciunt
+        dolores quo facere vitae tempora. Voluptatibus reprehenderit minus ullam debitis molestias, et nihil dolores aut
+        fuga ab quisquam? Accusamus, beatae ea. Inventore explicabo illo nesciunt tenetur vel illum temporibus quisquam
+        aperiam. Sapiente aliquid voluptatum obcaecati facere distinctio eius exercitationem dolorum aut reiciendis?
+        Molestias deserunt voluptatem ipsam cupiditate tempore error earum nulla! Animi repellat assumenda nam tenetur
+        maxime praesentium doloremque quidem, hic cupiditate unde deserunt aut id dolor tempore at quibusdam, modi
+        sapiente eaque ipsam quis facere corrupti est recusandae dolorem. Voluptatum pariatur nesciunt totam laudantium
+        perspiciatis, quasi cumque amet similique tempore neque iure quo ratione nihil officia nostrum laborum
+        necessitatibus aliquid sed! Iste necessitatibus sunt inventore autem qui alias.
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var header = document.getElementById('header');
+
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 50) { // Adjust this value to determine when the class should be added
+                    header.classList.remove('with_out_sticky');
+                    header.classList.add('sticky-header');
+                } else {
+                    header.classList.remove('sticky-header');
+                    header.classList.add('with_out_sticky');
+                }
+            });
+
+            //back to top button
+            let backToTopBtn = document.getElementById("backToTopBtn");
+            window.onscroll = function () {
+                scrollFunction();
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    backToTopBtn.classList.add("show");
+                } else {
+                    backToTopBtn.classList.remove("show");
+                }
+            }
+            backToTopBtn.onclick = function () {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+                behavior: 'smooth'
+            };
+
+        });
+
+    </script>
+</body>
+
+</html>

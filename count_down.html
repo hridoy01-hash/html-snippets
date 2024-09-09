@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Countdown Timer</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .countdown-item {
+            text-align: center;
+            padding: 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="countdown-container">
+        <div class="countdown-item">
+            <span id="days"></span>
+            <span>Days</span>
+        </div>
+        <div class="countdown-item">
+            <span id="hours"></span>
+            <span>Hours</span>
+        </div>
+        <div class="countdown-item">
+            <span id="minutes"></span>
+            <span>Minutes</span>
+        </div>
+        <div class="countdown-item">
+            <span id="seconds"></span>
+            <span>Seconds</span>
+        </div>
+    </div>
+    <script>
+        let daysElement = document.getElementById("days");
+        let hoursElement = document.getElementById("hours");
+        let minutesElement = document.getElementById("minutes");
+        let secondsElement = document.getElementById("seconds");
+
+        let deadline = new Date("2024-08-28T00:00:00").getTime(); // Replace with your desired deadline
+
+        let interval = setInterval(() => {
+            let now = new Date().getTime();
+            let timeRemaining = deadline - now;
+
+            let days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            daysElement.textContent = days;
+            hoursElement.textContent = hours;
+            minutesElement.textContent = minutes;
+            secondsElement.textContent = seconds;
+
+            if (timeRemaining <= 0) {
+                clearInterval(interval);
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>

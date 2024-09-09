@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagination</title>
+    <style>
+        .pagination {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .pagination li {
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .pagination li.active {
+            background-color: #f05;
+            color: white;
+            border-radius: 50%;
+            padding: 5px 10px;
+        }
+
+        .pagination li.disabled {
+            color: #ccc;
+            cursor: default;
+        }
+
+        .pagination li.ellipsis {
+            cursor: default;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="pagination"></div>
+    <script>
+        const totalPages = 30; // Total number of pages
+        let currentPage = 4; // Current active page
+
+        function createPagination(totalPages, currentPage) {
+            const paginationContainer = document.getElementById('pagination');
+            paginationContainer.innerHTML = '';
+
+            const paginationList = document.createElement('ul');
+            paginationList.className = 'pagination';
+
+            // Previous Button
+            const prevButton = document.createElement('li');
+            prevButton.innerHTML = '&laquo;';
+            prevButton.className = currentPage === 1 ? 'disabled' : '';
+            prevButton.onclick = () => currentPage > 1 && changePage(currentPage - 1);
+            paginationList.appendChild(prevButton);
+
+            if (totalPages <= 10) {
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageItem = document.createElement('li');
+                    pageItem.innerHTML = i;
+                    pageItem.className = i === currentPage ? 'active' : '';
+                    pageItem.onclick = () => changePage(i);
+                    paginationList.appendChild(pageItem);
+                }
+            } else {
+                // Show first 3 pages
+                for (let i = 1; i <= 3; i++) {
+                    const pageItem = document.createElement('li');
+                    pageItem.innerHTML = i;
+                    pageItem.className = i === currentPage ? 'active' : '';
+                    pageItem.onclick = () => changePage(i);
+                    paginationList.appendChild(pageItem);
+                }
+
+                if (currentPage > 4 && currentPage < totalPages - 3) {
+                    const ellipsisStart = document.createElement('li');
+                    ellipsisStart.innerHTML = '...';
+                    ellipsisStart.className = 'ellipsis';
+                    ellipsisStart.onclick = () => changePage(currentPage - 3); // Show pages before the current page
+                    paginationList.appendChild(ellipsisStart);
+
+                    const pageItem = document.createElement('li');
+                    pageItem.innerHTML = currentPage;
+                    pageItem.className = 'active';
+                    pageItem.onclick = () => changePage(currentPage);
+                    paginationList.appendChild(pageItem);
+
+                    const ellipsisEnd = document.createElement('li');
+                    ellipsisEnd.innerHTML = '...';
+                    ellipsisEnd.className = 'ellipsis';
+                    ellipsisEnd.onclick = () => changePage(currentPage + 3); // Show pages after the current page
+                    paginationList.appendChild(ellipsisEnd);
+                } else if (currentPage >= totalPages - 3) {
+                    const ellipsis = document.createElement('li');
+                    ellipsis.innerHTML = '...';
+                    ellipsis.className = 'ellipsis';
+                    ellipsis.onclick = () => changePage(totalPages - 5); // Show pages before the last set of pages
+                    paginationList.appendChild(ellipsis);
+                } else if (currentPage <= 4) {
+                    const ellipsis = document.createElement('li');
+                    ellipsis.innerHTML = '...';
+                    ellipsis.className = 'ellipsis';
+                    ellipsis.onclick = () => changePage(6); // Show pages after the first set of pages
+                    paginationList.appendChild(ellipsis);
+                }
+
+                // Show last 2 pages
+                for (let i = totalPages - 2; i <= totalPages; i++) {
+                    const pageItem = document.createElement('li');
+                    pageItem.innerHTML = i;
+                    pageItem.className = i === currentPage ? 'active' : '';
+                    pageItem.onclick = () => changePage(i);
+                    paginationList.appendChild(pageItem);
+                }
+            }
+
+            // Next Button
+            const nextButton = document.createElement('li');
+            nextButton.innerHTML = '&raquo;';
+            nextButton.className = currentPage === totalPages ? 'disabled' : '';
+            nextButton.onclick = () => currentPage < totalPages && changePage(currentPage + 1);
+            paginationList.appendChild(nextButton);
+
+            paginationContainer.appendChild(paginationList);
+        }
+
+        function changePage(page) {
+            currentPage = page;
+            createPagination(totalPages, currentPage);
+        }
+
+        createPagination(totalPages, currentPage);
+
+    </script>
+</body>
+
+</html>

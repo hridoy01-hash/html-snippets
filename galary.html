@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Popup Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+</head>
+
+<body>
+    <div class="image-gallery">
+        <a href="https://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg" class="popup-link">
+            <img src="https://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg" alt="Thumbnail 1">
+        </a>
+        <a href="http://farm9.staticflickr.com/8382/8558295631_0f56c1284f_b.jpg" class="popup-link">
+            <img src="http://farm9.staticflickr.com/8382/8558295631_0f56c1284f_b.jpg" alt="Thumbnail 2">
+        </a>
+    </div>
+    <button class="click">Click</button>
+
+    <script>
+        const images = {{ product.images | json }}
+        $(document).ready(function () {
+            // Initialize the gallery but prevent it from opening on image click
+            $('.popup-link').magnificPopup({
+                type: 'image',
+                gallery: {
+                    enabled: true
+                },
+                delegate: 'a',
+                disableOn: function () {
+                    return false; // Disable opening on image click
+                }
+            });
+
+            // Open the gallery when the "Click" button is pressed
+            $('.click').on('click', function () {
+                $.magnificPopup.open({
+                    items: [
+                        { src: 'https://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg' },
+                        { src: 'http://farm9.staticflickr.com/8382/8558295631_0f56c1284f_b.jpg' }
+                    ],
+                    gallery: {
+                        enabled: true
+                    },
+                    type: 'image'
+                });
+            });
+
+            // Prevent the images from opening the gallery when clicked directly
+            $('.popup-link').on('click', function (e) {
+                e.preventDefault();
+            });
+        });
+    </script>
+</body>
+
+</html>

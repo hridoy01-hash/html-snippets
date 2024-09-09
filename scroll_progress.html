@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circular Scroll Progress</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* styles.css */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .circular-progress {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            background: conic-gradient(orange 0%, purple 0%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .circular-progress span {
+            font-size: 20px;
+            font-weight: bold;
+            color: black;
+        }
+
+        .content {
+            height: 4000px;
+            /* For demonstration purposes */
+        }
+        #progress-value{
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="circular-progress">
+        <span id="progress-value">0%</span>
+    </div>
+
+    <!-- Your page content -->
+    <div class="content">
+        <!-- Add some content here to make the page scrollable -->
+        <p>Lorem ipsum dolor sit amet...</p>
+    </div>
+
+    <script>
+        // script.js
+        window.onscroll = function () { scrollProgress() };
+        
+        function scrollProgress() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+
+            // Update circular progress
+            document.querySelector('.circular-progress').style.background = `conic-gradient(orange ${scrolled}%, purple 0%)`;
+
+            // Update percentage value in the middle
+            document.getElementById('progress-value').textContent = Math.round(scrolled) + '%';
+        }
+
+    </script>
+</body>
+
+</html>

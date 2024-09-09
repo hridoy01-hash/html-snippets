@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .tabs_options {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .tabs_options li {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .tab_content {
+            display: none;
+        }
+
+        .active-tab {
+            background-color: red;
+        }
+    </style>
+    <script src="https://unpkg.com/scrollreveal"></script>
+</head>
+
+<body>
+
+    <div class="tabs_section_main_wrapper">
+        <ul class="tabs_options">
+            <li><a href="#" data-tab="tab-1">Info</a></li>
+            <li><a href="#" data-tab="tab-2">Shipping</a></li>
+            <li><a href="#" data-tab="tab-3">Returns</a></li>
+        </ul>
+        <div id="tab-1" class="tab_content">
+            Info content
+        </div>
+        <div id="tab-2" class="tab_content">
+            Shipping content
+        </div>
+        <div id="tab-3" class="tab_content">
+            Returns content
+        </div>
+    </div>
+
+    <script>
+        // Get all tab buttons
+        var tabButtons = document.querySelectorAll('.tabs_options li a');
+
+        // Add click event listener to each tab button
+        tabButtons.forEach(function (button) {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+                var tabId = button.getAttribute('data-tab');
+                showTab(tabId, button);
+            });
+        });
+
+        // Show the first tab by default
+        showTab('tab-1', tabButtons[0]);
+
+        function showTab(tabId, tabButton) {
+            // Hide all tab contents
+            var tabContents = document.querySelectorAll('.tab_content');
+            tabContents.forEach(function (content) {
+                content.style.display = 'none';
+            });
+
+            // Remove active class from all tabs_options
+            tabButtons.forEach(function (button) {
+                button.parentElement.classList.remove('active-tab');
+            });
+
+            // Show the selected tab content
+            document.getElementById(tabId).style.display = 'block';
+
+            // Add active class to the clicked tab button
+            tabButton.parentElement.classList.add('active-tab');
+        }
+
+        // scroll reveal animation
+        ScrollReveal().reveal('.tabs_section_main_wrapper', {
+            duration: 1500, // Animation duration in milliseconds
+            origin: 'top', // Direction of the animation ('top', 'bottom', 'left', 'right')
+            distance: '100px', // How far the element moves during the animation
+            reset: true, // Whether the animation should reset after leaving the viewport
+            opacity: 0,
+            delay: 300
+        });
+    </script>
+
+</body>
+
+</html>
