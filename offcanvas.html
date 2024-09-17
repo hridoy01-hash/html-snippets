@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offcanvas Example</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #offcanvas {
+            position: fixed;
+            top: 0;
+            right: -1000px;
+            /* Initially hidden */
+            width: 300px;
+            height: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+            transition: right 0.5s ease;
+            /* Smooth transition for showing and hiding */
+            z-index: 1001;
+        }
+
+        #offcanvas.active {
+            right: 0;
+            /* Show the offcanvas */
+        }
+
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0s linear 0.5s;
+            /* Smooth fade out */
+            z-index: 1000;
+        }
+
+        #overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.5s ease, visibility 0s linear 0s;
+            /* Smooth fade in */
+        }
+
+        button {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+
+        button:hover {
+            background-color: #005f7a;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="openOffcanvas">Open Offcanvas</button>
+    <!-- Overlay element -->
+    <div id="overlay"></div>
+
+    <!-- Offcanvas menu -->
+    <div id="offcanvas">
+        <button id="closeOffcanvas">Close</button>
+        <h2>Offcanvas Content</h2>
+        <p>This is the content inside the offcanvas panel.</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Open offcanvas and show overlay
+            $('#openOffcanvas').on('click', function () {
+                $('#offcanvas').addClass('active'); // Slide in the offcanvas
+                $('#overlay').addClass('active');   // Show the overlay
+            });
+
+            // Close offcanvas and hide overlay smoothly
+            function closeOffcanvas() {
+                $('#offcanvas').removeClass('active'); // Slide out the offcanvas
+                $('#overlay').removeClass('active');   // Fade out the overlay
+            }
+
+            // Close offcanvas when the close button is clicked
+            $('#closeOffcanvas').on('click', function () {
+                closeOffcanvas();
+            });
+
+            // Close offcanvas when clicking on the overlay
+            $('#overlay').on('click', function () {
+                closeOffcanvas();
+            });
+        });
+
+
+    </script>
+
+</body>
+
+</html>
